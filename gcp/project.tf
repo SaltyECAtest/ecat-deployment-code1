@@ -23,3 +23,31 @@ resource "google_project_service" "project" {
 output "project_id" {
  value = google_project.project.project_id
 }
+
+provider "google" {
+  version = "3.5.0"
+ 
+  region  = "europe-west1"
+  zone    = "europe-west1-a"
+}
+
+resource "google_compute_network" "vpc_network" {
+  name = "salty-test-network"
+}
+
+resource "google_compute_instance" "vm_instance" {
+  name         = "salty-test-terraform-instance"
+  machine_type = "f1-micro"
+
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-9"
+    }
+  }
+
+  network_interface {
+    network = google_compute_network.vpc_network.name
+    access_config {
+    }
+  }
+}
