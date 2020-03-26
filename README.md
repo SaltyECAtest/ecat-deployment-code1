@@ -1,2 +1,2 @@
-# ecat-deployment-code1
-example deployment code with compute instance 
+# example-ecat-deployment-code
+Example Terraform code used for deploying infrastructure using Enterprise Cloud Admin Tool
