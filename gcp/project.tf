@@ -25,7 +25,7 @@ output "project_id" {
 }
 
 resource "google_compute_network" "vpc_network" {
-  name = "salty-test-network"
+  name = "default"
 }
 
 resource "google_compute_instance" "vm_instance" {
