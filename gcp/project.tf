@@ -26,6 +26,8 @@ output "project_id" {
 
 resource "google_compute_network" "vpc_network" {
   name = "salty-test"
+  auto_create_subnetworks = true
+  project = google_project.project.name
 }
 
 resource "google_compute_instance" "vm_instance" {
