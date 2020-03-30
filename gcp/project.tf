@@ -44,7 +44,7 @@ resource "google_compute_instance" "vm_instance" {
   name         = "salty-test-terraform-instance"
   project = google_project.project.project_id
   machine_type = "f1-micro"
-  zone = europe-west1
+  zone = "europe-west1"
 
   boot_disk {
     initialize_params {
