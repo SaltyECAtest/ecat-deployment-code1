@@ -36,6 +36,10 @@ resource "null_resource" "delay" {
   }
 }
 
+resource "null_resource" "after" {
+  depends_on = ["null_resource.delay"]
+}
+
 resource "google_compute_network" "vpc_network" {
   name = "salty-test"
   auto_create_subnetworks = true
@@ -52,6 +56,10 @@ resource "null_resource" "delay" {
   triggers = {
     "before" = "${null_resource.before.id}"
   }
+}
+
+resource "null_resource" "after" {
+  depends_on = ["null_resource.delay"]
 }
 
 resource "google_compute_instance" "vm_instance" {
