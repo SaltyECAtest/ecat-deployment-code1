@@ -26,7 +26,7 @@ output "project_id" {
 
 resource "null_resource" "delay" {
   provisioner "local-exec" {
-    command = "sleep 120"
+    command = "sleep 180"
   }
   triggers = {
     "project" = "${google_project.project.project_id}"
