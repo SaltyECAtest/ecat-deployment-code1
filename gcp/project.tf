@@ -37,7 +37,7 @@ resource "null_resource" "delay1" {
 }
 
 resource "null_resource" "after1" {
-  depends_on = ["null_resource.delay"]
+  depends_on = ["null_resource.delay1"]
 }
 
 resource "google_compute_network" "vpc_network" {
