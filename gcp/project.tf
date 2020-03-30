@@ -24,19 +24,19 @@ output "project_id" {
  value = google_project.project.project_id
 }
 
-resource "null_resource" "before" {
+resource "null_resource" "before1" {
 }
 
-resource "null_resource" "delay" {
+resource "null_resource" "delay1" {
   provisioner "local-exec" {
     command = "sleep 300"
   }
   triggers = {
-    "before" = "${null_resource.before.id}"
+    "before1" = "${null_resource.before1.id}"
   }
 }
 
-resource "null_resource" "after" {
+resource "null_resource" "after1" {
   depends_on = ["null_resource.delay"]
 }
 
@@ -46,20 +46,20 @@ resource "google_compute_network" "vpc_network" {
   project = google_project.project.project_id
 }
 
-resource "null_resource" "before" {
+resource "null_resource" "before2" {
 }
 
-resource "null_resource" "delay" {
+resource "null_resource" "delay2" {
   provisioner "local-exec" {
     command = "sleep 300"
   }
   triggers = {
-    "before" = "${null_resource.before.id}"
+    "before2" = "${null_resource.before2.id}"
   }
 }
 
 resource "null_resource" "after" {
-  depends_on = ["null_resource.delay"]
+  depends_on = ["null_resource.delay2"]
 }
 
 resource "google_compute_instance" "vm_instance" {
