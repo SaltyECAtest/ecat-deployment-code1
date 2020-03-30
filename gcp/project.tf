@@ -26,7 +26,7 @@ output "project_id" {
 
 resource "null_resource" "delay" {
   provisioner "local-exec" {
-    command = "sleep 300"
+    command = "sleep 120"
   }
   triggers = {
     "project" = "${google_project.project.project_id}"
@@ -42,6 +42,7 @@ resource "google_compute_network" "vpc_network" {
 
 resource "google_compute_instance" "vm_instance" {
   name         = "salty-test-terraform-instance"
+  project = google_project.project.project_id
   machine_type = "f1-micro"
 
   boot_disk {
