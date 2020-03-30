@@ -24,10 +24,34 @@ output "project_id" {
  value = google_project.project.project_id
 }
 
+resource "null_resource" "before" {
+}
+
+resource "null_resource" "delay" {
+  provisioner "local-exec" {
+    command = "sleep 300"
+  }
+  triggers = {
+    "before" = "${null_resource.before.id}"
+  }
+}
+
 resource "google_compute_network" "vpc_network" {
   name = "salty-test"
   auto_create_subnetworks = true
   project = google_project.project.project_id
+}
+
+resource "null_resource" "before" {
+}
+
+resource "null_resource" "delay" {
+  provisioner "local-exec" {
+    command = "sleep 300"
+  }
+  triggers = {
+    "before" = "${null_resource.before.id}"
+  }
 }
 
 resource "google_compute_instance" "vm_instance" {
