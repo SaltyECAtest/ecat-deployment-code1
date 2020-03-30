@@ -24,15 +24,12 @@ output "project_id" {
  value = google_project.project.project_id
 }
 
-resource "null_resource" "before" {
-}
-
 resource "null_resource" "delay" {
   provisioner "local-exec" {
     command = "sleep 300"
   }
   triggers = {
-    "before" = "${null_resource.before.id}"
+    "project" = "${google_project.project.project_id}"
   }
 }
 
