@@ -1,3 +1,10 @@
+terraform {
+  backend "gcs" {
+    bucket  = "ecat-terraform-state"
+    prefix  = "state"
+  }
+}
+
 variable "project_id" {}
 variable "role_bindings" {}
 variable "project_name" {}
