@@ -10,8 +10,8 @@ variable "gcs_prefix" {}
 
 terraform {
   backend "gcs" {
-    bucket  = "ecat-terraform-state"
-    prefix  = "state"
+    bucket  = var.gcs_bucket
+    prefix  = var.gcs_prefix
   }
 }
 
