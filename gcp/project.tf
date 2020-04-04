@@ -1,10 +1,3 @@
-terraform {
-  backend "gcs" {
-    bucket  = var.gcs_bucket
-    prefix  = var.gcs_prefix
-  }
-}
-
 variable "project_id" {}
 variable "role_bindings" {}
 variable "project_name" {}
@@ -14,6 +7,13 @@ variable "billing_id" {}
 variable "skip_delete" {}
 variable "gcs_bucket" {}
 variable "gcs_prefix" {}
+
+terraform {
+  backend "gcs" {
+    bucket  = "ecat-terraform-state"
+    prefix  = "state"
+  }
+}
 
 resource "google_project" "project" {
  name            = var.project_name
